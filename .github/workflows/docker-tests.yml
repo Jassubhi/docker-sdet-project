@@ -1,0 +1,20 @@
+name: Docker SDET Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t sdet-api-tests .
+
+      - name: Run automated tests
+        run: docker run --rm sdet-api-tests
