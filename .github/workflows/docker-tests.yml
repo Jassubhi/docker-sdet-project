@@ -26,7 +26,7 @@ jobs:
             -v "$PWD/reports:/reports" \
             tests pytest -v tests/test_integration.py \
             --junitxml=/reports/integration-results.xml \
-	    --html=/reports/integration-report.html \
+            --html=/reports/integration-report.html \
             --self-contained-html
 
       - name: Upload test report
