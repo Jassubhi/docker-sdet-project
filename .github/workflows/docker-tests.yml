@@ -25,14 +25,16 @@ jobs:
           docker compose run --rm --build \
             -v "$PWD/reports:/reports" \
             tests pytest -v tests/test_integration.py \
-            --junitxml=/reports/integration-results.xml
+            --junitxml=/reports/integration-results.xml \
+	    --html=/reports/integration-report.html \
+            --self-contained-html
 
       - name: Upload test report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: integration-test-report
-          path: reports/integration-results.xml
+          path: reports/
           if-no-files-found: warn
 
       - name: Show container logs on failure
