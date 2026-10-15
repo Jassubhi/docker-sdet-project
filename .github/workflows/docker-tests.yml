@@ -24,7 +24,7 @@ jobs:
           mkdir -p reports
           docker compose run --rm --build \
             -v "$PWD/reports:/reports" \
-            tests pytest -v tests/test_integration.py \
+            tests pytest -v -n 3 tests/test_integration.py \
             --junitxml=/reports/integration-results.xml \
             --html=/reports/integration-report.html \
             --self-contained-html

@@ -2,3 +2,4 @@ pytest
 requests
 psycopg[binary]
 pytest-html
+pytest-xdist
