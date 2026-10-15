@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sdet-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sdet-api
+  template:
+    metadata:
+      labels:
+        app: sdet-api
+    spec:
+      containers:
+        - name: api
+          image: sdet-fastapi:v1
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DB_HOST
+              value: "db"
+            - name: DB_NAME
+              value: "testdb"
+            - name: DB_USER
+              value: "testuser"
+            - name: DB_PASSWORD
+              value: "testpass"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: sdet-api
+spec:
+  selector:
+    app: sdet-api
+  ports:
+    - port: 8000
+      targetPort: 8000

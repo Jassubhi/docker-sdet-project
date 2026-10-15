@@ -13,6 +13,7 @@ BASE_URL = os.getenv("BASE_URL", "http://localhost:8081")
 def db_connection():
     conn = psycopg.connect(
         host=os.getenv("DB_HOST", "localhost"),
+	port=int(os.getenv("DB_PORT", "5432")),
         dbname=os.getenv("DB_NAME", "testdb"),
         user=os.getenv("DB_USER", "testuser"),
         password=os.getenv("DB_PASSWORD", "testpass"),
